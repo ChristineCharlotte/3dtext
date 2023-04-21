@@ -38,8 +38,8 @@ const donutArray = []
 const handleFontLoad = (font) => {
   // console.log(font);
   const textGeometry = new THREE.TextBufferGeometry(
-    window.prompt("请输入你想展示的文字\nInput the text you want to display",'Hello Three.js!'),
-    // 'Hello Three.js!',
+    // window.prompt("请输入你想展示的文字\nInput the text you want to display",'Hello Three.js!'),
+    '你好，小焰！',
     {
       font,
       size: 0.5,
@@ -53,48 +53,47 @@ const handleFontLoad = (font) => {
     }
   );
   const text = new THREE.Mesh(textGeometry, textMaterial);
-  textGeometry.computeBoundingBox()
+  textGeometry.computeBoundingBox();
   console.log(textGeometry.boundingBox);
   textGeometry.translate(
-    - (textGeometry.boundingBox.max.x - 0.02) * 0.5,
-    - (textGeometry.boundingBox.max.y - 0.02) * 0.5,
-    - (textGeometry.boundingBox.max.z - 0.03) * 0.5,
-  )
+    -(textGeometry.boundingBox.max.x - 0.02) * 0.5,
+    -(textGeometry.boundingBox.max.y - 0.02) * 0.5,
+    -(textGeometry.boundingBox.max.z - 0.03) * 0.5
+  );
 
-
-  scene.add(text)
+  scene.add(text);
 
   console.time('donuts');
 
-  const donutGeometry = new THREE.TorusBufferGeometry(0.3, 0.2, 20, 45)
+  const donutGeometry = new THREE.TorusBufferGeometry(0.3, 0.2, 20, 45);
 
-  
-  for(let i = 0; i < 300; i++){
-    const donut = new THREE.Mesh(donutGeometry, backgroundMaterial)
+  for (let i = 0; i < 300; i++) {
+    const donut = new THREE.Mesh(donutGeometry, backgroundMaterial);
 
-    donut.position.x = (Math.random() - 0.5 ) * 10
-    donut.position.y = (Math.random() - 0.5 ) * 10
-    donut.position.z = (Math.random() - 0.5 ) * 10
+    donut.position.x = (Math.random() - 0.5) * 10;
+    donut.position.y = (Math.random() - 0.5) * 10;
+    donut.position.z = (Math.random() - 0.5) * 10;
 
-    donut.rotation.x = Math.random() * Math.PI
-    donut.rotation.y = Math.random() * Math.PI
-    
-    const scale = Math.random() * 0.2
-    donut.scale.set(scale, scale, scale)
+    donut.rotation.x = Math.random() * Math.PI;
+    donut.rotation.y = Math.random() * Math.PI;
 
-    scene.add(donut)
+    const scale = Math.random() * 0.2;
+    donut.scale.set(scale, scale, scale);
 
-    donutArray.push(donut)
+    scene.add(donut);
+
+    donutArray.push(donut);
   }
 
   console.timeEnd('donuts');
-}
+};
 
-const fontLoader = new THREE.FontLoader()
+const fontLoader = new THREE.FontLoader();
 fontLoader.load(
-  './fonts/helvetiker_regular.typeface.json',
+  // './fonts/helvetiker_regular.typeface.json',
+  './fonts/FZZhengHeiS.json',
   (font) => handleFontLoad(font)
-)
+);
 
 /**
  * Object
